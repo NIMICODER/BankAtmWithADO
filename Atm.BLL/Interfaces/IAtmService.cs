@@ -3,10 +3,10 @@
     public interface IAtmService
     {
         void Start();
-        //void Withdraw(decimal amount);
-        //void CheckBalance(AccountType accountType);
-        // void Transfer(string accountNo, Bank bank, decimal amount);
-        //void Deposit(string accountNo, AccountType accountType, decimal amount);
+        void Withdraw();
+        void CheckBalance();
+        void Transfer();
+        void Deposit();
         void PayBill();
         void CreateAccount();
         void ReloadCash();

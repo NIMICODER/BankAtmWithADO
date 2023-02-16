@@ -23,8 +23,6 @@ namespace AtmBLL.Implementation
         {
             CreateAccount();
         }
-
-
         public  void CreateAccount()
         {
             try
@@ -99,9 +97,6 @@ namespace AtmBLL.Implementation
             }
         }
 
-       
-        
-
         public void PayBill()
         {
 
@@ -110,6 +105,28 @@ namespace AtmBLL.Implementation
         public void ReloadCash()
         {
 
+        }
+
+        
+
+        public void Withdraw()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CheckBalance()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Transfer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Deposit()
+        {
+            throw new NotImplementedException();
         }
 
         protected virtual void Dispose(bool disposing)
@@ -133,6 +150,5 @@ namespace AtmBLL.Implementation
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }
