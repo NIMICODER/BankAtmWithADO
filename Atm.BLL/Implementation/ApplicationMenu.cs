@@ -12,7 +12,7 @@ namespace Atm.BLL.Implementation
     {
         public static void Application()
         {
-            var atm = new AtmService(new BankAppDBContext());
+            IAtmService atmServices = new AtmService(new BankAppDBContext());
             Console.WriteLine("Choose an Option");
             Console.WriteLine("1.\t Login As Admin. \n2.\t Login as User\n3.\t Create new Account\n4\t Quit App");
             string Option = Console.ReadLine() ?? string.Empty;
@@ -23,29 +23,33 @@ namespace Atm.BLL.Implementation
 
                 switch (value)
                 {
-                    case (int)MainMenu.LoginAdmin:
+                    case (int)BankAppMenu.CheckBalance:
+                        atmServices.CheckBalance();
                         Console.WriteLine("Implementation coming soon");
-                        MainMenuChoice();
+                        Application();
                         break;
-                    case (int)MainMenu.LoginUser:
-                        IAuthService authService = new AuthService();
-                        authService.Login();
+                    case (int)BankAppMenu.MakeDeposit:
+                        atmServices.Deposit();
                         Console.WriteLine("Implementation coming soon");
-                        MainMenuChoice();
+                        Application();
                         break;
-                    case (int)MainMenu.CreateAccount:
-                        atm.CreateAccount();
+                    case (int)BankAppMenu.MakeWithdrawal:
+                        atmServices.Withdraw();
                         Console.Clear();
-                        MainMenuChoice();
-                        // Console.WriteLine("Implementation coming soon");
+                        Console.WriteLine("Implementation coming soon");
+                        Application();
                         break;
-                    case (int)MainMenu.Exit:
+                    case (int)BankAppMenu.ViewTransactionHistory:
+                        Console.WriteLine("Implementation coming soon");
+                        break;
+                    case (int)BankAppMenu.Logout:
                         LogoutProgress();
-                        //Console.WriteLine("Implementation coming soon");
+                        Application();
                         break;
                     default:
                         Console.Clear();
                         Console.WriteLine("Input is incorrect");
+                        Application();
                         break;
 
                 }
@@ -55,8 +59,15 @@ namespace Atm.BLL.Implementation
             {
                 Console.Clear();
                 Console.WriteLine("Please Insert a valid input");
-                MainMenuChoice();
+                Application();
             }
+        }
+
+        public static void LogoutProgress()
+        {
+            Console.WriteLine("Logged out successfully...");
+            Utility.DisplayDotAnimation();
+            Console.Clear();
         }
     }
 }

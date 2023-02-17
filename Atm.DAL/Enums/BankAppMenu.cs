@@ -6,7 +6,7 @@
         MakeDeposit,
         MakeWithdrawal,
         MakeTransfer,
-        ViewTransaction,
+        ViewTransactionHistory,
         Logout
     }
 

@@ -16,6 +16,7 @@ namespace Atm.BLL.Implementation
             //AtmDB.CreateDatabase();
             
             var atm = new AtmService(new BankAppDBContext());
+           // IAuthService auth = new AuthService(new BankAppDBContext());
             Console.WriteLine("Choose an Option");
             Console.WriteLine("1.\t Login As Admin. \n2.\t Login as User\n3.\t Create new Account\n4\t Quit App");
             string Option = Console.ReadLine() ?? string.Empty;
@@ -31,7 +32,7 @@ namespace Atm.BLL.Implementation
                         MainMenuChoice();
                         break;
                     case (int)MainMenu.LoginUser:
-                        IAuthService authService = new AuthService();
+                        IAuthService authService = new AuthService(new BankAppDBContext());
                         authService.Login();
                         Console.WriteLine("Implementation coming soon");
                         MainMenuChoice();
@@ -49,6 +50,7 @@ namespace Atm.BLL.Implementation
                     default:
                         Console.Clear();
                         Console.WriteLine("Input is incorrect");
+                        MainMenuChoice();
                         break;
 
                 }
