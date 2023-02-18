@@ -18,7 +18,7 @@ namespace Atm.BLL.Implementation
             var atm = new AtmService(new BankAppDBContext());
            // IAuthService auth = new AuthService(new BankAppDBContext());
             Console.WriteLine("Choose an Option");
-            Console.WriteLine("1.\t Login As Admin. \n2.\t Login as User\n3.\t Create new Account\n4\t Quit App");
+            Console.WriteLine("1.\t Login As Admin. \n2.\t Login as User\n3.\t Create new Account\n4\t Exit App");
             string Option = Console.ReadLine() ?? string.Empty;
             if (int.TryParse(Option, out int value))
             {
@@ -45,6 +45,7 @@ namespace Atm.BLL.Implementation
                         break;
                     case (int)MainMenu.Exit:
                         LogoutProgress();
+                        Environment.Exit(0);
                         //Console.WriteLine("Implementation coming soon");
                         break;
                     default:

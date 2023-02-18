@@ -14,7 +14,7 @@ namespace Atm.BLL.Implementation
         {
             IAtmService atmServices = new AtmService(new BankAppDBContext());
             Console.WriteLine("Choose an Option");
-            Console.WriteLine("1.\t Login As Admin. \n2.\t Login as User\n3.\t Create new Account\n4\t Quit App");
+            Console.WriteLine("1.\t Check Balance \n2.\t Make Deposit \n3.\t Make Withdrawal \n4\t Make Transfer \n5\t View Transaction History \n6\t Logout ");
             string Option = Console.ReadLine() ?? string.Empty;
             if (int.TryParse(Option, out int value))
             {
@@ -24,27 +24,31 @@ namespace Atm.BLL.Implementation
                 switch (value)
                 {
                     case (int)BankAppMenu.CheckBalance:
-                        atmServices.CheckBalance();
+                        //atmServices.CheckBalance();
+                        Console.Clear();
                         Console.WriteLine("Implementation coming soon");
                         Application();
                         break;
                     case (int)BankAppMenu.MakeDeposit:
-                        atmServices.Deposit();
+                        //atmServices.Deposit();
+                        Console.Clear();
                         Console.WriteLine("Implementation coming soon");
                         Application();
                         break;
                     case (int)BankAppMenu.MakeWithdrawal:
-                        atmServices.Withdraw();
+                        //atmServices.Withdraw();
                         Console.Clear();
                         Console.WriteLine("Implementation coming soon");
                         Application();
                         break;
                     case (int)BankAppMenu.ViewTransactionHistory:
+                        Console.Clear();
                         Console.WriteLine("Implementation coming soon");
+                        Application();
                         break;
                     case (int)BankAppMenu.Logout:
                         LogoutProgress();
-                        Application();
+                        AtmAppMenu.MainMenuChoice();
                         break;
                     default:
                         Console.Clear();

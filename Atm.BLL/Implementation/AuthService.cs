@@ -17,9 +17,7 @@ namespace Atm.BLL.Implementation
         }
 
         public void Login()
-        { try
-            {
-
+        { 
             
                 Console.WriteLine("Enter your card number: ");
                 string cardNumber = Console.ReadLine();
@@ -29,10 +27,15 @@ namespace Atm.BLL.Implementation
                 bool isValid = false;
                 Console.Clear();
 
-                SqlConnection sqlConn = _dbContext.OpenConnection();
+                //SqlConnection sqlConn = _dbContext.OpenConnection();
+                string connectionString = @"Data Source=DESKTOP-L9HB1OU\SQLEXPRESS;Integrated Security=True;Initial Catalog=BankAtmDB;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                SqlConnection connection = new SqlConnection(connectionString);
+
+                connection.Open();
+
 
                 string query = "SELECT COUNT(*) FROM Users WHERE CardNumber = @CardNumber AND CardPin = @CardPin";
-                using (SqlCommand command = new SqlCommand(query, sqlConn))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     try
                     {
@@ -41,9 +44,11 @@ namespace Atm.BLL.Implementation
                         command.Parameters.AddWithValue("@CardNumber", cardNumber);
                         command.Parameters.AddWithValue("@CardPin", cardPin);
                         int result = (int)command.ExecuteScalar();
+
                         if (result > 0)
                         {
                             Console.WriteLine("Login successful");
+                            ApplicationMenu.Application();
                         }
 
                     } catch(Exception)
@@ -51,7 +56,7 @@ namespace Atm.BLL.Implementation
                         Console.WriteLine("Login failed");
                     } finally
                     {
-                        sqlConn.Close();
+                        connection.Close();
                     }
                     if(isValid)
                     {
@@ -67,14 +72,11 @@ namespace Atm.BLL.Implementation
                 }
                // _dbContext.CloseConnection();
 
-            } catch(Exception ex) 
-            {
-                Console.WriteLine("Error:",ex.Message); 
-            }    
+               
 
         }
 
-        //public void Login()
+        //public void LoginB()
         //{
 
         //}
